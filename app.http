@@ -1,0 +1,33 @@
+GET http://localhost:3001/
+###
+
+
+
+POST http://localhost:3001/post/ 
+Content-Type: application/json
+
+{
+  "name":"G Kyathi",
+  "gender":"Female",
+  "age":24,
+  "mobileNum": 8563965230,
+  "emailId":"kyathi@gmail.com",
+  "keySkills":"MS-Office",
+  "highestQualification":"Degree",
+  "addressProof":"Aadhar",
+  "expLetter":"NA",
+  "presesntLocation":"Gudivada",
+  "languages":"Telugu",
+  "expectedCtc":"3.5LPA",
+  "enterprenuerType":"NON IT",
+  "dob":"12-03-1998",
+  "pincode":521324
+}
+
+### 
+PUT http://localhost:3001/update/5/
+Content-Type: application/json
+
+{
+    "dob":"06-06-1994"
+}
