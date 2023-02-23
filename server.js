@@ -93,12 +93,10 @@ app.post('/post/', async(req,res,err)=>{
 
 app.put("/update/:id/", async(req,res)=>{
     const {id} = req.params;   
-    const {dob} = req.body;
-    const now = new Date(dob).toISOString().slice(0,10)
-    console.log(now)
-    const updateQuery = `UPDATE usersdata SET date_of_birth = '${now}' WHERE id = ${id}`
+    const {languages} = req.body;
+    const updateQuery = `UPDATE usersdata SET languages = '${languages}' WHERE id = ${id}`
     await db.run(updateQuery)
-    res.json({msg:'dob updated'})
+    res.json({msg:'data updated'})
 })
  
 
