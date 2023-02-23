@@ -29,5 +29,5 @@ PUT http://localhost:3001/update/5/
 Content-Type: application/json
 
 {
-    "languages":"Telugu English"
+    "keySkills":"MS OFFICE"
 }

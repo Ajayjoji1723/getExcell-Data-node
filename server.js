@@ -93,8 +93,8 @@ app.post('/post/', async(req,res,err)=>{
 
 app.put("/update/:id/", async(req,res)=>{
     const {id} = req.params;   
-    const {languages} = req.body;
-    const updateQuery = `UPDATE usersdata SET languages = '${languages}' WHERE id = ${id}`
+    const {keySkills} = req.body;
+    const updateQuery = `UPDATE usersdata SET key_skills = '${keySkills}' WHERE id = ${id}`
     await db.run(updateQuery)
     res.json({msg:'data updated'})
 })
