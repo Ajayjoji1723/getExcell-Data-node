@@ -4,11 +4,15 @@ const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 const port = process.env.PORT || 3001;
 const cors = require('cors');
+const stripe = require('stripe')('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');
+const bodyParser = require("body-parser")
 
 const dbPath = path.join(__dirname,'usersData.db');
 
 const app = express()
-app.use(cors({origin: true}))
+app.use(cors())
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
 let db = null;
@@ -90,6 +94,28 @@ app.post('/post/', async(req,res,err)=>{
         res.json({message:err.message})
     }
 })
+
+app.post('/pay', async (req, res) => {
+    try {
+      const amount = req.body.amount;
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount: amount * 100,
+        currency: 'inr',
+        payment_method_types: ['card'],
+      });
+      res.send({
+        clientSecret: paymentIntent.client_secret,
+        amount: amount
+      });
+    } catch (err) {
+      console.log(err);
+      res.status(500).send({
+        error: err.message
+      });
+    }
+  });
+
+
 
 app.put("/update/:id/", async(req,res)=>{
     const {id} = req.params;   
